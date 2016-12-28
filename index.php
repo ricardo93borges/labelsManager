@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="css/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css/bootstrap-theme.min.css">
     <script type="application/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="application/javascript" src="js/index.js"></script>
 </head>
 <body>
 
@@ -14,7 +15,7 @@
                         <label for="privateToken">Private token</label>
                         <input type="password" class="form-control" id="privateToken">
                     </div>
-                    <button type="submit" class="btn btn-default pull-right">Search projetcs</button>
+                    <button type="submit" id="searchProjectsBtn" class="btn btn-default pull-right">Search projetcs</button>
                 </form>
             </div>
         </div>
@@ -30,7 +31,7 @@
 
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default pull-right">Search labels</button>
+                    <button type="submit" id="searchLabelsBtn" class="btn btn-default pull-right">Search labels</button>
                 </form>
             </div>
         </div>
@@ -52,7 +53,7 @@
 
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default pull-right">Export</button>
+                    <button type="submit" id="exportBtn" class="btn btn-default pull-right">Export</button>
                 </form>
             </div>
         </div>
