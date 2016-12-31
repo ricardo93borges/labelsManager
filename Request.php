@@ -18,7 +18,7 @@ class Request
     {
         $this->url = $url;
         $this->params = $params;
-        $this->queryString = http_build_query($this->params);
+        $this->queryString = trim(http_build_query($this->params), "0%5B");
     }
 
     /**
@@ -75,7 +75,6 @@ class Request
      */
     function get(){
         $url = $this->url."?".$this->queryString;
-
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -92,21 +91,15 @@ class Request
      * @return mixed
      */
     function post(){
-        $url = $this->url."?".$this->queryString;
-
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $this->url,
             CURLOPT_POST => 1,
-            CURLOPT_POSTFIELDS => array(
-                item1 => 'value',
-                item2 => 'value2'
-            )
+            CURLOPT_POSTFIELDS => $this->params
         ));
         $response = curl_exec($curl);
-        curl_close($curl)
-        ;
+        curl_close($curl);
         return $response;
     }
 }
