@@ -51,6 +51,7 @@ class Router
         //Find route and call an action
         $uri = implode('/', $uri);
         $route = $this->match($uri, $method);
+
         if(is_null($route)){
             print "There are no match for this route";
         }else {
@@ -90,8 +91,8 @@ class Router
 }
 
 $router = new Router();
-$router->add('/^\/?projetos\/?$/', 'Controller.php', 'projetos', 'GET');
-$router->add('/^\/?projeto\/id\/labels\/?$/', 'Controller.php', 'getLabels', 'GET');
-$router->add('/^\/?projeto\/id\/labels\/?$/', 'Controller.php', 'addLabels', 'POST');
-$router->add('/^\/?(config)\/?$/', 'Controller.php', 'configs', 'GET');
+$router->add('/^\/?projetos\/?$/', 'ProjetoController.php', 'getProjetos', 'GET');
+$router->add('/^\/?projeto\/\d?.\/labels\/?$/', 'ProjetoController.php', 'getLabels', 'GET');
+$router->add('/^\/?projeto\/\d?.\/labels\/?$/', 'ProjetoController.php', 'addLabels', 'POST');
+$router->add('/^\/?(config)\/?$/', 'ConfigController.php', 'getAll', 'GET');
 $router->run();
