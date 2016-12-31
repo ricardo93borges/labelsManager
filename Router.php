@@ -91,8 +91,8 @@ class Router
 }
 
 $router = new Router();
-$router->add('/^\/?projetos\/?$/', 'ProjetoController.php', 'getProjetos', 'GET');
-$router->add('/^\/?projeto\/\d?.\/labels\/?$/', 'ProjetoController.php', 'getLabels', 'GET');
-$router->add('/^\/?projeto\/\d?.\/labels\/?$/', 'ProjetoController.php', 'addLabels', 'POST');
+$router->add('/^\/?projetos\/?$/', 'ProjectController.php', 'getProjetos', 'GET');
+$router->add('/^\/?projeto\/\d?.\/labels\/?$/', 'ProjectController.php', 'getLabels', 'GET');
+$router->add('/^\/?projeto\/\d?.\/labels\/?$/', 'ProjectController.php', 'addLabels', 'POST');
 $router->add('/^\/?(config)\/?$/', 'ConfigController.php', 'getAll', 'GET');
 $router->run();
