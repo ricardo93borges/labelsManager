@@ -13,38 +13,29 @@ class Controller
     {
     }
 
-    function formatResponse($response){
-        return json_encode($response);
-    }
-
     /**
-     * get configs
+     * Get parameter from query string
+     * @param $param
+     * @return null
      */
-    function configs(){
+    public function _getParam($param){
+        $uri = $_SERVER['REQUEST_URI'];
+        $explode = explode('/', $uri);
 
+        foreach($explode as $k=>$v){
+            if($v == $param){
+                if(isset($explode[$k+1])) {
+                    return $explode[$k + 1];
+                }
+            }
+        }
+
+        return null;
     }
 
-    /**
-     * get Projects
-     */
-    function projetos(){
-
+    function toJson($object){
+        return json_encode($object);
     }
 
-    /**
-     * get labels
-     */
-    function getLabels(){
-
-    }
-
-    /**
-     * add labels
-     */
-    function addLabels(){
-
-    }
 
 }
-
-$controller = new Controller();
