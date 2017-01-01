@@ -4,7 +4,6 @@
   "description": "Manage Gitlab labels",
   "main": "index.php",
   "dependencies": {
-    "bower": "^1.8.0",
     "angular": "^1.6.*",
     "bootstrap": "^3.3.*",
     "jquery": "^3.1.*"
