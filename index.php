@@ -8,19 +8,41 @@
     <script type="application/javascript" src="labelsManager.js"></script>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Label Manager for Gitlab</a>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
     <div class="container" ng-controller="LabelCtrl">
         <div class="row">
             <div class="col-md-12">
                 <form name="formSearchProjects" method="post">
                     <div class="form-group">
                         <label for="apiUrl">API URL</label>
-                        <input type="url" class="form-control" id="apiUrl" ng-model="configs.api_url" required>
+                        <input type="url" class="form-control" id="apiUrl" ng-model="configs.api_url" required disabled>
                     </div>
                     <div class="form-group">
                         <label for="privateToken">Private token</label>
-                        <input type="password" class="form-control" id="privateToken" ng-model="configs.private_token" required>
+                        <input ng-attr-type="{{ showToken ? 'text' : 'password' }}" class="form-control"
+                               id="privateToken" ng-model="configs.private_token" required disabled>
+                        <div class="checkbox">
+                            <label for="showToken">
+                                <input type="checkbox" id="showToken" ng-model="showToken">Show private token
+                            </label>
+                        </div>
                     </div>
-                    <input type="submit" id="searchProjectsBtn" class="btn btn-default pull-right" ng-click="searchProjects(configs)" value="Search projetcs">
+                    <input type="submit" id="searchProjectsBtn" class="btn btn-primary pull-right" ng-click="searchProjects(configs)" value="Search projetcs">
                 </form>
             </div>
         </div>
@@ -36,7 +58,7 @@
                                 ng-options="option.name for option in projects.options track by option.id">
                         </select>
                     </div>
-                    <button type="submit" id="searchLabelsBtn" class="btn btn-default pull-right" ng-click="searchLabels(configs)">Search labels</button>
+                    <button type="submit" id="searchLabelsBtn" class="btn btn-primary pull-right" ng-click="searchLabels(configs)">Search labels</button>
                 </form>
             </div>
         </div>
@@ -61,7 +83,7 @@
                                 ng-options="option.name for option in projectsToExport.options track by option.id">
                         </select>
                     </div>
-                    <button type="submit" id="exportBtn" class="btn btn-default pull-right" ng-click="export(configs)">Export</button>
+                    <button type="submit" id="exportBtn" class="btn btn-primary pull-right" ng-click="export(configs)">Export</button>
                 </form>
             </div>
         </div>
