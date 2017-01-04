@@ -34,8 +34,8 @@ class ProjectController extends Controller
         $content = file_get_contents("config.json");
         $configs = json_decode($content, true);
 
-        $projeto = $this->_getParam('project');
-        $url = $configs['api_url']."/projects/$projeto/labels";
+        $project = $this->_getParam('project');
+        $url = $configs['api_url']."/projects/$project/labels";
         $params = array('private_token'=>$configs['private_token']);
 
         $request = new Request($url, $params);
@@ -47,20 +47,24 @@ class ProjectController extends Controller
         $content = file_get_contents("config.json");
         $configs = json_decode($content, true);
 
-        $projeto = $this->_getParam('project');
-        $url = $configs['api_url']."/projects/$projeto/labels";
-        $params = array(
-            'private_token'=>$configs['private_token'],
-            'id'=>$projeto,
-            'name'=>'test label',
-            'color'=>'#5843AD',
-            'description'=>'testing',
-            'priority'=>null,
-        );
+        $project = $this->_getParam('project');
+        $labels = $_POST['labels'];
 
-        $request = new Request($url, $params);
-        $response = $request->post();
-        die($response);
+        $url = $configs['api_url']."/projects/$project/labels";
+
+        foreach ($labels as $label){
+            $params = array(
+                'private_token'=>$configs['private_token'],
+                'id'=>$project,
+                'name'=>$label['name'],
+                'color'=>$label['color'],
+                'description'=>$label['description'],
+                'priority'=>null,
+            );
+            $request = new Request($url, $params);
+            $response = $request->post();
+        }
+        die(json_encode(array('message'=>'Export completed')));
     }
 
 }

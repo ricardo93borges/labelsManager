@@ -40,4 +40,24 @@ labelsManager.controller('LabelCtrl', function LabelCtrl($scope, $http){
         });
     }
 
+    $scope.export = function(configs){
+        var data = $.param({
+            'labels':$scope.labels
+        });
+
+        var config = {
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+
+        $http.post('Router.php/project/'+$scope.projectsToExport.selected.id+'/labels', data, config).then(function(response) {
+            if(response.data.message) {
+                alert(response.data.message);
+            }else{
+                alert(response.data);
+            }
+        });
+    }
+
 });

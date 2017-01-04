@@ -61,7 +61,7 @@
                                 ng-options="option.name for option in projectsToExport.options track by option.id">
                         </select>
                     </div>
-                    <button type="submit" id="exportBtn" class="btn btn-default pull-right">Export</button>
+                    <button type="submit" id="exportBtn" class="btn btn-default pull-right" ng-click="export(configs)">Export</button>
                 </form>
             </div>
         </div>
